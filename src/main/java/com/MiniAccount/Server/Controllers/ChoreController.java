@@ -1,7 +1,6 @@
 package com.MiniAccount.Server.Controllers;
 
 import com.MiniAccount.Server.Entities.Chore;
-import com.MiniAccount.Server.Entities.Transaction;
 import com.MiniAccount.Server.Repositories.ChoreRepository;
 import com.MiniAccount.Server.Repositories.TransactionRepository;
 import com.MiniAccount.Server.Services.ChoreService;
@@ -12,7 +11,6 @@ import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.view.RedirectView;
 
 import java.math.BigDecimal;
-import java.time.LocalDate;
 import java.util.List;
 
 @Controller

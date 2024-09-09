@@ -8,6 +8,7 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.servlet.view.RedirectView;
 
 import java.math.BigDecimal;
 import java.time.LocalDate;
@@ -31,12 +32,28 @@ public class TransactionController {
     }
 
     @PostMapping("/updateTransaction")
-    public String updateTransaction(@RequestParam Long id, @RequestParam String description, @RequestParam BigDecimal amount, @RequestParam LocalDate date) {
+    public RedirectView updateTransaction(@RequestParam Long id, @RequestParam String description, @RequestParam BigDecimal amount, @RequestParam LocalDate date) {
         Transaction transaction = transactionRepository.findById(id).orElseThrow(() -> new RuntimeException("Transaction not found"));
         transaction.setDescription(description);
         transaction.setAmount(amount);
         transaction.setDate(date);
         transactionRepository.save(transaction);
-        return "redirect:/transactions";
+        return new RedirectView("/transactions");
+    }
+
+    @PostMapping("/addTransaction")
+    public RedirectView addTransaction(@RequestParam String description, @RequestParam BigDecimal amount, @RequestParam LocalDate date) {
+        Transaction newTransaction = new Transaction();
+        newTransaction.setDescription(description);
+        newTransaction.setAmount(amount);
+        newTransaction.setDate(date);
+        transactionRepository.save(newTransaction);
+        return new RedirectView("/transactions");
+    }
+
+    @PostMapping("/deleteTransaction")
+    public RedirectView deleteTransaction(@RequestParam Long id) {
+        transactionRepository.deleteById(id);
+        return new RedirectView("/transactions");
     }
 }

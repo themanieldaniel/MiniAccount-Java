@@ -31,7 +31,7 @@ public class ChoreController {
     @ResponseBody
     public RedirectView toggleChore(@RequestParam Long choreId) {
         choreService.toggleChoreCompletion(choreId);
-        return new RedirectView("/");  // TODO check if this is the correct redirect
+        return new RedirectView("/");
     }
 
     @GetMapping("/")
@@ -54,32 +54,19 @@ public class ChoreController {
         return new RedirectView("/");
     }
 
-//    @PostMapping("/chores/complete/{id}")
-//    public String markChoreComplete(@PathVariable Long id) {
-//        Chore chore = choreRepository.findById(id).orElseThrow();
-//        chore.setCompleted(true);
-//        choreRepository.save(chore);
-//
-//        // Create a transaction when a chore is marked as complete
-//        Transaction transaction = new Transaction();
-//        transaction.setDescription(chore.getDescription());
-//        transaction.setAmount(chore.getAmount());
-//        transaction.setDate(LocalDate.now());
-//        transactionRepository.save(transaction);
-//
-//        return "redirect:/";
-//    }
+    @PostMapping("/addChore")
+    public RedirectView addChore(@RequestParam String description, @RequestParam BigDecimal amount) {
+        Chore newChore = new Chore();
+        newChore.setDescription(description);
+        newChore.setAmount(amount);
+        newChore.setCompleted(false); // Newly added chores should not be completed
+        choreRepository.save(newChore);
+        return new RedirectView("/");
+    }
 
-//    @PostMapping("/chores/undo/{id}")
-//    public String undoChoreComplete(@PathVariable Long id) {
-//        Chore chore = choreRepository.findById(id).orElseThrow();
-//        chore.setCompleted(false);
-//        choreRepository.save(chore);
-//
-//        // Delete the corresponding transaction when a chore is marked as incomplete
-//        Transaction transaction = transactionRepository.findCurrentTransactionByDescription(chore.getDescription());
-//        transactionRepository.delete(transaction);
-//
-//        return "redirect:/";
-//    }
+    @PostMapping("/deleteChore")
+    public RedirectView deleteChore(@RequestParam Long id) {
+        choreRepository.deleteById(id);
+        return new RedirectView("/");
+    }
 }

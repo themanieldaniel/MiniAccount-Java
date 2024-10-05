@@ -13,4 +13,8 @@ public interface ChoreRepository extends JpaRepository<Chore, Long> {
     @Query("SELECT c FROM Chore c ORDER BY c.amount DESC")
     List<Chore> findAllChoresSortedByAmountDesc();
 
+    @Query("SELECT c FROM Chore c WHERE c.id NOT IN " +
+            "(SELECT t.choreId FROM Transaction t WHERE t.date = CURRENT_DATE)")
+    List<Chore> findChoresWithoutTransactionToday();
+
 }

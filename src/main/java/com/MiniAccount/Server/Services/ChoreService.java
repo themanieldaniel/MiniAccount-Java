@@ -5,18 +5,20 @@ import com.MiniAccount.Server.Entities.Transaction;
 import com.MiniAccount.Server.Repositories.ChoreRepository;
 import com.MiniAccount.Server.Repositories.TransactionRepository;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.scheduling.annotation.Scheduled;
 import org.springframework.stereotype.Service;
 
 import java.time.LocalDate;
+import java.util.List;
 
 @Service
 public class ChoreService {
 
     @Autowired
-    private TransactionRepository transactionRepository;
+    private ChoreRepository choreRepository;
 
     @Autowired
-    private ChoreRepository choreRepository;
+    private TransactionRepository transactionRepository;
 
     public void toggleChoreCompletion(Long choreId) {
         Chore chore = choreRepository.findById(choreId)
@@ -44,6 +46,14 @@ public class ChoreService {
         }
 
         choreRepository.save(chore);  // Save the updated chore
+    }
+
+    public void markIncompleteChores() {
+        List<Chore> choresWithoutTransaction = choreRepository.findChoresWithoutTransactionToday();
+        for (Chore chore : choresWithoutTransaction) {
+            chore.setCompleted(false);
+            choreRepository.save(chore);
+        }
     }
 
 }

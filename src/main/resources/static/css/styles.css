@@ -1,0 +1,180 @@
+/* General styles */
+body {
+    font-family: 'Poppins', sans-serif; /* Friendly-looking sans-serif font */
+    background-color: #f0f0f0;
+    margin: 0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+}
+
+.container {
+    background-color: white;
+    border-radius: 15px;
+    padding: 20px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    max-width: 600px;
+    width: 100%;
+    text-align: center;
+}
+
+/* Title styling */
+h1 {
+    font-size: 2.5rem;
+    margin-bottom: 20px;
+}
+
+/* Table styling */
+table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-bottom: 20px;
+}
+
+th, td {
+    padding: 12px;
+    text-align: left;
+    border-bottom: 1px solid #ddd;
+    border-right: 0px solid #ddd;
+}
+
+/* Right-align amounts in the table */
+th.amount, td.amount {
+    text-align: right;
+}
+
+th {
+    background-color: #f7f7f7;
+}
+
+/* Button styling */
+button {
+    padding: 8px 15px;
+    margin: 5px;
+    background-color: #5cb85c;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+    text-align: center; /* Center the text */
+    font-size: 1.0rem;
+}
+
+.btn-incomplete {
+    margin: -3px;
+    background-color: silver;
+    color: white;
+    width: 45px; /* Set a fixed width */
+}
+
+.btn-complete {
+    margin: -3px;
+    background-color: #5cb85c;
+    color: white;
+    width: 45px; /* Set a fixed width */
+}
+
+.btn:hover {
+    opacity: 0.9;
+}
+button:hover {
+    background-color: #4cae4c;
+}
+
+.cancel-button {
+    background-color: #d9534f;
+}
+
+.cancel-button:hover {
+    background-color: #c9302c;
+}
+
+/* checkbox */
+.custom-checkbox {
+    display: inline;
+    cursor: pointer;
+}
+
+.custom-checkbox input {
+    display: none; /* Hides the actual checkbox */
+}
+
+.checkbox-custom {
+    font-size: 0px;
+    border: 1px solid #555;
+    padding: 5px;
+    width: 30px;
+    height: 30px;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    color: #28a745; /* Green checkmark */
+}
+
+input:checked + .checkbox-custom {
+    background-color: #28a745;
+    color: white;
+}
+
+input:not(:checked) + .checkbox-custom {
+    background-color: #fff;
+    color: #555;
+}
+
+/* Balance display */
+.balance {
+    font-size: 1.5rem;
+    margin-bottom: 20px;
+    font-weight: bold;
+}
+
+.balance-container {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-top: 20px;
+}
+
+.balance-left {
+    text-align: left;
+}
+
+.balance-right {
+    text-align: right;
+}
+
+/* Add/Edit form styling */
+form {
+    margin-bottom: 0px;
+}
+
+/* Input styling */
+input[type="password"],
+input[type="text"],
+input[type="number"],
+input[type="date"] {
+    width: calc(100% - 20px);
+    padding: 10px;
+    margin-bottom: 10px;
+    border-radius: 5px;
+    border: 1px solid #ccc;
+}
+
+label {
+    display: inline-flex;
+    align-items: center; /* Vertically centers the label's contents */
+}
+
+input[type="checkbox"] {
+    width: 20px;
+    height: 20px;
+    margin: 0; /* Remove any default margins */
+    /* vertical-align: middle; /* Ensures the checkbox is vertically aligned */
+    cursor: pointer;
+}
+
+input[type="checkbox"]:checked {
+    background-color: green;
+}

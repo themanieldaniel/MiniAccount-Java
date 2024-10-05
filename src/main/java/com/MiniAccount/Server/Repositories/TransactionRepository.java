@@ -18,4 +18,5 @@ public interface TransactionRepository extends JpaRepository<Transaction, Long> 
     List<Transaction> findAllTransactionsSortedByDateDesc();
 
     @Query("SELECT t FROM Transaction t WHERE t.choreId = :choreId AND t.date = :currentDate")
-    Transaction findCurrentTransactionByChoreId(@Param("choreId") Long choreId, @Param("currentDate") LocalDate currentDate);}
+    Transaction findCurrentTransactionByChoreId(@Param("choreId") Long choreId, @Param("currentDate") LocalDate currentDate);
+}
